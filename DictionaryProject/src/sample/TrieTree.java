@@ -110,4 +110,25 @@ public class TrieTree {
         return cur.getValue();
     }
 
+    public String suggestWord (String keyWord) {
+        TrieNode cur = root;
+        for(int i = 0; i <keyWord.length(); i++){
+            if(cur.getChild(keyWord.charAt(i)) == null) break;
+            cur = cur.getChild(keyWord.charAt(i));
+        }
+        int cnt = 0;
+        while (!cur.isWord()) {
+            for(char c = 'a'; c <= 'z'; c++) {
+                if(cur.getChild(c) != null) {
+                    cur = cur.getChild(c);
+                    break;
+                }
+            }
+            cnt++;
+            if(cnt == 100) break;
+        }
+        if(cur == null) return "a";
+        return cur.getValue().getWordTarget();
+    }
+
 }

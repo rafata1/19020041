@@ -7,19 +7,29 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class Main extends Application {
 
     private static DictionaryManagement myDictionaryManagement;
-
-    public static void loadData() {
+    private static ArrayList<String> keyWordList;
+    private static void loadData() {
 
         myDictionaryManagement = new DictionaryManagement();
         myDictionaryManagement.insertFromFile("data/vocabulary.txt");
+        keyWordList = myDictionaryManagement.getDictionary().getKeyWordList();
+    }
+
+    public static ArrayList<String> getKeyWordList() {
+        return keyWordList;
     }
 
     public static Word findWord(String keyWord) {
         return myDictionaryManagement.getDictionary().findWord(keyWord);
+    }
+
+    public static String suggestWord(String keyWord) {
+        return myDictionaryManagement.getDictionary().suggestWord(keyWord);
     }
 
     @Override
