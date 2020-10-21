@@ -26,11 +26,6 @@ public class Dictionary {
         myTrieTree.addWord(newWord);
     }
 
-    // hien tat cac cac tu trong tu dien
-
-    public void show()
-    {
-    }
 
     //tim kiem tu
     public Word findWord(String keyWord) {

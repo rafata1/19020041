@@ -3,7 +3,6 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -11,6 +10,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+
+
+// Java code to convert text to speech
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,6 +27,8 @@ public class Controller implements Initializable {
     private TextArea definitionTextField;
     @FXML
     private ListView<String> wordListView;
+
+    private TextToSpeech textToSpeech;
 
     public void renderWord( Word word, boolean needToScroll) {
         if(word != null) {
@@ -47,6 +51,13 @@ public class Controller implements Initializable {
         renderWord(result, true);
     }
 
+    public void onListenButtonClicked(ActionEvent event)
+    {
+
+        textToSpeech.say(wordListView.getSelectionModel().getSelectedItem());
+
+    }
+
     public void onListViewClicked(MouseEvent event) {
         String keyWord = wordListView.getSelectionModel().getSelectedItem();
         Word result = Main.findWord(keyWord);
@@ -63,6 +74,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        textToSpeech = new TextToSpeech("kevin16");
         ObservableList<String> keyWords = FXCollections.observableArrayList(Main.getKeyWordList());
         wordListView.setItems(keyWords);
     }

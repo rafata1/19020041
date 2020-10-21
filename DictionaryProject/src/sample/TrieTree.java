@@ -64,7 +64,7 @@ class TrieNode {
 }
 
 public class TrieTree {
-    TrieNode root;
+    private TrieNode root;
 
     public  TrieTree() {
         root = new TrieNode();
@@ -90,6 +90,8 @@ public class TrieTree {
             }
             cur = cur.getChild(s.charAt(i));
         }
+
+
         if(cur.getValue() == null) {
             cur.setWord(true);
             cur.setValue(word);
