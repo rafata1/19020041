@@ -2,6 +2,7 @@ package sample;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.Scanner;
 
 public class DictionaryManagement {
@@ -43,9 +44,9 @@ public class DictionaryManagement {
         String tmp = new String();
         while (scanner.hasNextLine()) {
 
-            if(!tmpIsRead) tmp = scanner.nextLine();
+            if (!tmpIsRead) tmp = scanner.nextLine();
 
-            if(tmp.length()>0 && tmp.charAt(0) == '@') {
+            if (tmp.length() > 0 && tmp.charAt(0) == '@') {
                 Word loadedWord = new Word();
                 if (tmp.contains("/")) {
 
@@ -55,17 +56,18 @@ public class DictionaryManagement {
                 } else {
                     loadedWord.setWordTarget(tmp.substring(1, tmp.length()));
                 }
-                while(true) {
-                    if(!scanner.hasNextLine()) break;
+                while (true) {
+                    if (!scanner.hasNextLine()) break;
                     tmp = scanner.nextLine();
 
-                    if(tmp.length() == 0 ) {
+                    if (tmp.length() == 0) {
                         tmpIsRead = false;
                         break;
                     }
 
-                    if(tmp.charAt(0) == '@') {
-                        tmpIsRead = true;;
+                    if (tmp.charAt(0) == '@') {
+                        tmpIsRead = true;
+                        ;
                         break;
                     }
 

@@ -1,6 +1,8 @@
 package sample;
 
-public class Word {
+import java.io.Serializable;
+
+public class Word implements Serializable{
     // cai nay la properties
     private String wordTarget;
     private String wordExplain;
